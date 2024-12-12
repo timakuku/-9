@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Демонстрация JavaScript</title>
+    <style>
+        body {
+            transition: background-color 0.5s, color 0.5s;
+        }
+        .dark-theme {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Демонстрация возможностей JavaScript</h1>
+
+    <h2>Встроенные функции JavaScript</h2>
+    <button id="myButton">Нажми на меня</button>
+    <p id="randomNumber"></p>
+
+    <h2>Приветственное сообщение</h2>
+    <input type="text" id="nameInput" placeholder="Введите ваше имя">
+    <button onclick="greetUser()">Отправить</button>
+
+    <h2>Переключение темы</h2>
+    <button onclick="toggleTheme()">Переключить тему</button>
+
+    <script>
+        document.getElementById("myButton").addEventListener("click", () => {
+            alert("Вы нажали на кнопку!");
+            console.log("Кнопка была нажата!");
+            const randomNum = Math.random();
+            document.getElementById("randomNumber").innerText = `Случайное число: ${randomNum}`;
+        });
+
+        function greetUser() {
+            const name = document.getElementById('nameInput').value;
+            alert("Привет, " + name + "!");
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-theme");
+            const currentTheme = document.body.classList.contains("dark-theme") ? "dark" : "light";
+            localStorage.setItem("theme", currentTheme);
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-theme");
+            }
+        };
+    </script>
+
+</body>
+</html>
